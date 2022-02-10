@@ -12,19 +12,11 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '16.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm install
-#    npm run build
+    npm run build
   displayName: 'npm install and build'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Enterprise Subscription – MPN (36c7de9d-d66a-4965-8013-b052bff6bfb1)'
-    appType: 'webAppLinux'
-    WebAppName: 'nodeapp9'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.*'
-    RuntimeStack: 'NODE|10.14'
-    StartupCommand: 'npm start'
+
