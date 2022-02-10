@@ -20,6 +20,8 @@ steps:
     #npm run start
   displayName: 'npm install and build'
 
+- publish: $(System.DefaultWorkingDirectory)/node
+  artifact: WebApp
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -27,6 +29,6 @@ steps:
     azureSubscription: 'Visual Studio Enterprise Subscription – MPN (36c7de9d-d66a-4965-8013-b052bff6bfb1)'
     appType: 'webAppLinux'
     WebAppName: 'nodeapp9'
-    packageForLinux: '$(System.DefaultWorkingDirectory)*.*'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/node'
     RuntimeStack: 'NODE|10.14'
     StartupCommand: 'npm run start'
